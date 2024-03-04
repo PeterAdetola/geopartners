@@ -62,7 +62,7 @@ class HeroController extends Controller
             'image.required' => 'Hero image in JPG/PNG is required',
         ]);
 
-
+        $order = 0;
         $image = $request->file('image');
 
         if($image) {
@@ -73,12 +73,18 @@ class HeroController extends Controller
             // $sizedImg->toJpeg(80)->save('upload/hero_images/'.$name_gen);
             $sizedImg->save('uploads/hero_images/'.$name_gen);
             $save_url = 'uploads/hero_images/'.$name_gen;
+
+            $thumbnail = $manager->read($image)->cover(200, 200)
+            ->save('uploads/hero_images/thumbnails/thumbnail_' . $name_gen);
+            $thumbnail = 'uploads/hero_images/thumbnails/thumbnail_'.$name_gen;
         }
 
             HeroSection::insert([
+                'order' => $order,
                 'heading' => $request->heading,
                 'sub_heading' => $request->sub_heading,
                 'image' => $save_url,
+                'thumbnail' => $thumbnail,
             ]);
 
         $notification = array(
@@ -134,16 +140,7 @@ class HeroController extends Controller
             $sizedImg->save('uploads/hero_images/'.$name_gen);
             $save_url = 'uploads/hero_images/'.$name_gen;
 
-            // Create the thumbnail
-            // $thumbnail = Image::make($image->getRealPath())
-
-            // $manager = new ImageManager(new Driver());
-            // $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            $thumbnail = $manager->read($image)
-            // $sizedImg = $img->resize(1920, 1128);
-            // Resize the image to fit within a specific width and height while maintaining aspect ratio
-            ->cover(200, 200)
-            // Save the thumbnail with a different name (e.g., "thumbnail_". $originalImageName)
+            $thumbnail = $manager->read($image)->cover(200, 200)
             ->save('uploads/hero_images/thumbnails/thumbnail_' . $name_gen);
             $thumbnail = 'uploads/hero_images/thumbnails/thumbnail_'.$name_gen;
 
@@ -181,7 +178,7 @@ class HeroController extends Controller
      */
      public function SortSlide(Request $request)
     {
-        
+
         $slideOrder = $request->input('order');
 
         foreach ($slideOrder as $index => $slideId) {
