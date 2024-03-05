@@ -1,4 +1,8 @@
  @extends('admin.admin_master')
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/vendors/dropify/css/dropify.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/vendors/jquery.nestable/nestable.css') }}">
+@endsection
  @section('admin')
     <!-- BEGIN: Page Main-->
     <div id="main">
@@ -51,14 +55,19 @@
                 <div class="col s12">
                   <div class="slider">
                     <ul class="slides">
+                      @php
+                      $slides = getSlides();
+                      @endphp
+                      @foreach($slides as $slide)
                       <li>
-                        <img src="{{ asset('backend/assets/images/gallery/33.png') }}" alt="img-3">
+                        <img src="{{ url($slide->image) }}" alt="{{ $slide->image }}">
                         <!-- random image -->
                         <div class="caption right-align">
-                          <h3 class="white-text">Right Aligned Caption</h3>
-                          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                          <h3 class="white-text">{{ $slide->heading }}</h3>
+                          <h5 class="light grey-text text-lighten-3">{{ $slide->sub_heading }}</h5>
                         </div>
                       </li>
+                      @endforeach
                     </ul>
                   </div>
                 </div>
@@ -85,28 +94,38 @@
             </div>
             <div class="divider"></div>
 
-  
+
+    @php
+    $aboutSum = getAboutSummary();
+    @endphp
+    @foreach($aboutSum as $aboutSum)
     <div class="row mt-1">
       <div class="col s12 m6 mt-1">
-        <p>Architecture viverra tristique justo duis vitae diam neque nivamus aestan ateuene artines aringianu atelit finibus viverra nec lacus. Nedana theme erodino setlie suscipe no curabit tristique.
-
-Design inilla duiman at elit finibus viverra nec a lacus themo the drudea seneoice misuscipit non sagie the fermen.</p><p>
-
-Planner inilla duiman at elit finibus viverra nec a lacus themo the drudea seneoice misuscipit non sagie the fermen. Viverra tristique jusio the ivite dianne onen nivami acsestion.</p>
-<a href="#!" class="btn-large mt-2">Edit Summary</a>
+        <p>{!! $aboutSum->summary !!}</p>
+<a href="#about-summary-modal" class="modal-trigger btn-large mt-2">Edit Summary</a>
       </div>
       <div class="col s12 m6">
-        <div class="card blue-grey darken-4 bg-image-1" style="height: 20em;">
+        <!-- <div class="card blue-grey darken-4 bg-image-1" style="height: 20em;"> -->
+          <div class="card blue-grey darken-4" style="
+              background-image: url({{ url($aboutSum->image) }});
+              background-size: cover;
+              background-position: center;
+              height: 20em;
+        " >
           <div class="card-content white-text">
-            <span class="card-title font-weight-400 mt-10">Macbook Pro</span>
+            <span class="card-title font-weight-400 mt-10">{{ $aboutSum->caption }}</span>
             <div class="border-non mt-5">
-              <a class="waves-effect waves-light btn red box-shadow" style="margin-top: 7em;">
+              <a href="#about-sum_img-modal"  class="modal-trigger waves-effect waves-light btn red box-shadow" style="margin-top: 7em;">
                 edit</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+    @endforeach
+
+    @include('admin.about.about_summary.modals.about_summary-modal')
+    @include('admin.about.about_summary.modals.about_sumImg-modal')
     </div>
 </div>
 
@@ -166,7 +185,27 @@ Planner inilla duiman at elit finibus viverra nec a lacus themo the drudea seneo
     </div>
     <!-- END: Page Main-->
 
+    <script src="{{ asset('backend/assets/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+    plugins: 'code lists',
+    height: 250,
+    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code '
+  });  
+</script>
+
     <script type="text/javascript">
+
+    document.getElementById("saveAboutTextBtn").addEventListener("click", function() {
+      var preloader = document.getElementById("about-text-preloader");
+      preloader.style.display = "block";
+    });
+
+    document.getElementById("updateImageBtn").addEventListener("click", function() {
+      var preloader = document.getElementById("about-sumImg-preloader");
+      preloader.style.display = "block";
+    });
       // Preloader Script
       function ShowPreloader() {
         document.getElementById('preloader').style.display = "block";
@@ -175,4 +214,29 @@ Planner inilla duiman at elit finibus viverra nec a lacus themo the drudea seneo
         // document.getElementById('preloader4').style.display = "block";
       }
     </script>
-  @endsection
+  <script type="text/javascript">      
+      
+  $(document).ready(()=>{
+      $('#image').change(function(){
+        const file = this.files[0];
+        // console.log(file);
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+            console.log(event.target.result);
+            $('#showImage').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+
+</script>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('backend/assets/vendors/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/scripts/form-file-uploads.js') }}"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <!-- <script src="{{ asset('backend/assets/js/scripts/extra-components-nestable.js') }}"></script>  -->
+@endsection

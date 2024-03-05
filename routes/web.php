@@ -4,7 +4,7 @@ use App\AppHelpers;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HeroController;
-use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\About\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +42,19 @@ Route::controller(HeroController::class)->group(function ()
     Route::post('/sort/slide', 'SortSlide')->name('sort.slide');
     Route::post('/update/slider', 'UpdateSlide')->name('update.slide');
     Route::post('/store/slide', 'SaveSlide')->name('save.slide');    
+});
+
+// --------------| About Routes |----------------------------------------
+Route::controller(AboutController::class)->group(function () 
+{
+    // Route::get('/', 'Intropage')->name('intro');
+
+    // Route::get('/edit/slide/{id}', 'EditSlide')->name('edit.slide');
+    // Route::get('/delete/slide/{id}', 'DeleteSlide')->name('delete.slide');
+    // Route::get('/view/slides', 'ViewSlides')->name('view.slides');
+    // Route::post('/sort/slide', 'SortSlide')->name('sort.slide');
+    Route::post('/update/about_summary', 'UpdateAboutSummary')->name('update.about_summary');
+    // Route::post('/store/slide', 'SaveSlide')->name('save.slide');    
 });
 
 

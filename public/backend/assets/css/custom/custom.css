@@ -416,3 +416,9 @@ input[type=range]::-ms-thumb
     font-size: 20px;
     font-weight: 300;    
 }
+
+
+.modal
+{
+    max-height: 85%;
+}

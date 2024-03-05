@@ -66,8 +66,17 @@ if (!function_exists('getUserFisrtName')) {
 if (!function_exists('getSlides')) {
     function getSlides()
     {
-     $slides = App\Models\HeroSection::all();
+     $slides = App\Models\HeroSection::all()->sortBy('order');
      
      return $slides;
+    }
+}
+// Get About summary
+if (!function_exists('getAboutSummary')) {
+    function getAboutSummary()
+    {
+     $about_sum = App\Models\AboutSummary::all();
+     
+     return $about_sum;
     }
 }

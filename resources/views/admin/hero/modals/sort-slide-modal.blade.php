@@ -1,8 +1,8 @@
 
 <!-- Start Modal -->
-<div id="sort-slide-modal" class="modal" style="padding:0.2em;">
+<div id="sort-slide-modal" class="modal" style="padding:0.1em;">
     <div class="modal-content">
-      <h6 class="card-title ml-2" style="display:inline-block;">Sort Slide</h6>
+      <h6 class="card-title ml-2" style="display:inline-block;">Re-arrange Slide</h6>
 
       <div class="progress collection">
         <div id="sort-slide-preloader" class="indeterminate"  style="display:none; 
@@ -37,57 +37,4 @@
 Sortable.create(simpleList, {
   animation: 150 
 });
-
-
-// $('#saveOrderButton').on('click', function() {
-//     var slideOrder = $('.slide-item').map(function() {
-//         return $(this).data('slide-id');
-//     }).get();
-
-//     $.post('/sort/slide', { slideOrder: slideOrder }, function(response) {
-//         // Handle success or error response
-//         if (response.success) {
-//             alert('Slide order saved successfully!');
-//         } else {
-//             alert('Failed to save slide order.');
-//         }
-//     });
-// });
-</script>
-    
-<script>
-  
-  // Add event listener for "saveOrderButton" click
-  // document.getElementById('saveOrderButton').addEventListener('click', saveOrder);
-
-//   function saveOrder() {
-//   const orderData = {};
-//   const listItems = document.getElementById('simpleList').querySelectorAll('li');
-
-//   // Loop through list items and collect order data
-//   for (let i = 0; i < listItems.length; i++) {
-//     const slideId = listItems[i].id.split('-')[1];
-//     orderData[slideId] = i + 1; // Adjust indexing as needed
-//   }
-
-//   // Send AJAX request
-//   $.ajax({
-//     url: '{{ route('sort.slide') }}',
-//     method: 'POST',
-//     data: { 
-//       order: orderData,
-//        _token: csrfToken
-//        },
-//     success: function(response) {
-//       // Handle success response (e.g., close modal, show success message)
-//       console.log(response.message);
-//       $('#sort-slide-modal').modal('hide');
-//     },
-//     error: function(error) {
-//       // Handle error (e.g., display error message)
-//       console.error(error);
-//     }
-//   });
-// }
-
 </script>
