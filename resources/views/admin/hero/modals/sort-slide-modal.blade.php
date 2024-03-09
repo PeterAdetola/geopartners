@@ -14,7 +14,7 @@
             @csrf
       <ul id="simpleList" class="collapsible">
         @foreach($slides as $slide) 
-         <li id="slide-{{ $slide->id }}">
+         <li class="hoverable" id="slide-{{ $slide->id }}">
           <input type="hidden" name="order[]" value="{{ $slide->id }}">
           <div class="collapsible-header slide-item" style="padding: 5px">
               <img width="50px" height="50px" src="{{ url($slide->thumbnail) }}" class="circle ml-5" />

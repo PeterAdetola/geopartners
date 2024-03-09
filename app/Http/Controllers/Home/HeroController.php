@@ -193,5 +193,36 @@ class HeroController extends Controller
 
     } // End Method
 
+    /**
+     * Delete slide.
+     */
+    public function DeleteSlide($id)
+    {
+        
+        $slide = HeroSection::findOrFail($id);        
+        $delImg = $slide->image;
+        $delThumb = $slide->thumbnail;
+
+        try {
+            if(file_exists($delImg)){
+            unlink($delImg);
+        }
+            if(file_exists($delThumb)) {
+            unlink($delThumb);                
+            }
+        } catch (Exception $e) {
+        Log::error("Error deleting old image/thumbnail: " . $e->getMessage());            
+        }
+
+        HeroSection::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Slide deleted',
+        );
+
+        return redirect()->back()->with($notification);
+
+    } //End Method
+
 
 }

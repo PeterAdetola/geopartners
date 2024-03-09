@@ -1,11 +1,11 @@
 
 <!-- Start Modal -->
-<div id="edit{{ $slide->id }}" class="modal" style="padding:1em;">
+<div id="create-service-modal" class="modal" style="padding:1em;">
     <div class="modal-content">
-      <h6 class="card-title ml-2" style="display:inline-block;">Edit Slide</h6>
+      <h6 class="card-title ml-2" style="display:inline-block;">Add Service</h6>
 
       <div class="progress collection">
-        <div id="preloader{{ $slide->id }}" class="indeterminate"  style="display:none; 
+        <div id="create-service-preloader" class="indeterminate"  style="display:none; 
         border:2px #ebebeb solid"></div>
       </div>
       
@@ -14,35 +14,33 @@
         <div class="col s12" id="account">
           <!-- users edit media object ends -->
           <!-- users edit account form start -->
-          <form method="POST" action="{{ route('update.slide') }}" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="{{ $slide->id }}">
+          <form method="POST" action="{{ route('save.service') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
-              <div class="col s12 m12 l6 mb-2">
-                  <input name="image" type="file" data-default-file="{{ url($slide->image) }}" id="input-file-now-custom-2" class="dropify" data-height='250' />  
+              <div class="col s12 m12 l4 mb-2">
+                  <input name="image" type="file" id="input-file-now-custom-2" class="dropify" data-height='150' required />  
               @error('image')
               <small class="errorTxt3  red-text">{{ $message }}*</small>
               @enderror   
               </div>
 
 
-              <div class="col s12 m6">
+              <div class="col s12 m8">
                 <div class="row">
 
                   <div class="col s12 input-field">
-                    <input id="heading" name="heading" value="{{ $slide->heading }}" type="text" class="validate" 
-                      data-error=".errorTxt3" />
-                    <label for="heading">Heading</label>
+                    <input id="name" name="name" type="text" class="validate" 
+                      data-error=".errorTxt3" required />
+                    <label for="name">Name</label>
                     @error('heading')
                     <small class="errorTxt3 red-text">{{ $message }}*</small>
                     @enderror
                   </div>
 
                   <div class="col s12 input-field">
-                    <input id="sub_heading"  value="{{ $slide->sub_heading }}" name="sub_heading" type="text" class="validate" 
-                      data-error=".errorTxt2" required />
-                    <label for="sub_heading">Sub Heading</label>
+                    <label for="summary">Summary</label>
+                    <textarea id="icon_prefix2" name="summary" class="materialize-textarea" required></textarea>
                     @error('short_title')
                     <small class="errorTxt3  red-text">{{ $message }}*</small>
                     @enderror
@@ -53,9 +51,8 @@
                   Save Entry</button>
                 <a href="{{ route('view.slides') }}" class="btn-large btn-flat modal-close">Cancel</a>
               </div>   -->  
-
               <div class="col s12 mt-7">   
-                <button  id="updateSlideBtn{{ $slide->id }}" type="submit" class="modal-action waves-effect waves-green btn-large">Update</button>
+                <button  id="createServiceBtn" type="submit" class="modal-action waves-effect waves-green btn-large">Create Service</button>
                 <a href="javascript:void(0)" class="btn-large btn-flat modal-close">Cancel</a>
               </div>     
 
@@ -70,11 +67,4 @@
       <!-- </div> -->
   </div>
 </div>
-<script type="text/javascript"> 
-      // Preloader Script
-document.getElementById("updateSlideBtn{{$slide->id}}").addEventListener("click", function() {
-  var preloader = document.getElementById("preloader{{$slide->id}}");
-  preloader.style.display = "block";
-});
-</script>
 <!-- /End Modal -->

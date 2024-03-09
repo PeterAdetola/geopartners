@@ -1,11 +1,21 @@
+<!-- <div id="delete{{ $slide->id }}" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div> -->
+
 
 <!-- Start Modal -->
-<div id="edit{{ $slide->id }}" class="modal" style="padding:1em;">
+<div id="delete{{ $slide->id }}" class="modal" style="padding:1em;">
     <div class="modal-content">
-      <h6 class="card-title ml-2" style="display:inline-block;">Edit Slide</h6>
+      <h6 class="card-title ml-2" style="display:inline-block;">Delete Slide</h6>
 
       <div class="progress collection">
-        <div id="preloader{{ $slide->id }}" class="indeterminate"  style="display:none; 
+        <div id="del-preloader{{ $slide->id }}" class="indeterminate"  style="display:none; 
         border:2px #ebebeb solid"></div>
       </div>
       
@@ -14,7 +24,7 @@
         <div class="col s12" id="account">
           <!-- users edit media object ends -->
           <!-- users edit account form start -->
-          <form method="POST" action="{{ route('update.slide') }}" enctype="multipart/form-data">
+          <form method="POST" action="{{ route('delete.slide', $slide->id) }}" enctype="multipart/form-data">
             <input type="hidden" name="id" value="{{ $slide->id }}">
             @csrf
 
@@ -55,8 +65,8 @@
               </div>   -->  
 
               <div class="col s12 mt-7">   
-                <button  id="updateSlideBtn{{ $slide->id }}" type="submit" class="modal-action waves-effect waves-green btn-large">Update</button>
-                <a href="javascript:void(0)" class="btn-large btn-flat modal-close">Cancel</a>
+                <button  id="deleteSlideBtn{{ $slide->id }}" type="submit" class="modal-action red waves-effect waves-red btn-large"><i class="material-icons white-text mb-2">delete</i></button>
+                <a href="javascript:void(0)" class="btn-large btn-flat modal-close"><i class="material-icons white-text mb-2">close</i></a>
               </div>     
 
                 </div>
@@ -72,8 +82,8 @@
 </div>
 <script type="text/javascript"> 
       // Preloader Script
-document.getElementById("updateSlideBtn{{$slide->id}}").addEventListener("click", function() {
-  var preloader = document.getElementById("preloader{{$slide->id}}");
+document.getElementById("deleteSlideBtn{{$slide->id}}").addEventListener("click", function() {
+  var preloader = document.getElementById("del-preloader{{$slide->id}}");
   preloader.style.display = "block";
 });
 </script>

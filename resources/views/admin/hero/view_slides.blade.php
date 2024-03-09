@@ -32,8 +32,10 @@ $pageTitle = 'View Hero Slides';
                   </li>
                 </ol>
               </div>
+        @if (count($slides) > 1)
               <div class="col s2 m6 l6"><a class="modal-trigger mb-2 btn-floating btn-flat waves-effect waves-light breadcrumbs-btn right" href="#sort-slide-modal" ><i class="material-icons hide-on-med-and-up">print</i><i class="material-icons right">list</i></a>
               </div>
+        @endif
     @include('admin.hero.modals.sort-slide-modal')
 
             </div>
@@ -44,6 +46,7 @@ $pageTitle = 'View Hero Slides';
             <!-- users view start -->
 <div class="row">
   @php($i = 1)
+  @if (count($slides) > 0)
   @foreach($slides as $slide) 
 
  <div class="col s12 m6 l4">
@@ -64,15 +67,36 @@ $pageTitle = 'View Hero Slides';
               <a href="#edit{{ $slide->id }}" class="modal-trigger lime-text text-accent-1">
                 <i class="material-icons small-ico-bg grey-text mb-2">edit</i>
               </a>
-              <a id="delete" href="#!" class="lime-text text-accent-1">
-                <i class="material-icons small-ico-bg grey-text mb-2">delete</i>
+              <a href="#delete{{ $slide->id }}" class="modal-trigger lime-text text-accent-1">
+                <i class="material-icons small-ico-bg red-text mb-2">delete</i>
               </a>
             </div>
           </div>
     </div>
     @include('admin.hero.modals.edit-slide-modal')
+    @include('admin.hero.modals.delete-slide-modal')
 
     @endforeach
+    @else
+ <div class="col s12 m6 l4">
+      
+
+          <div class="card" style="
+              background-image: url({{ url('backend/assets/images/gallery/flat-bg.jpg') }});
+              background-size: cover;
+              background-position: center;
+        " >
+            <div class="card-content grey-text" style="height: 10em;">
+              <span class="card-title">No Image yet</span>
+              <p class="grey-text">
+               Click the plus button on this page to add slide
+              </p>
+            </div>
+            
+          </div>
+    </div>
+
+    @endif
 
 @if (count($slides) < 4)
   <div style="bottom: 50px; right: 19px;" class=" fixed-action-btn direction-top"><a href="#create-slide-modal" class="modal-trigger btn-floating btn-large gradient-45deg-black-grey gradient-shadow"><i class="material-icons">add</i></a>

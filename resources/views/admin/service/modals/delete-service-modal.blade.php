@@ -1,11 +1,11 @@
 
 <!-- Start Modal -->
-<div id="edit{{ $slide->id }}" class="modal" style="padding:1em;">
+<div id="delete{{ $service->id }}" class="modal" style="padding:1em;">
     <div class="modal-content">
-      <h6 class="card-title ml-2" style="display:inline-block;">Edit Slide</h6>
+      <h6 class="card-title ml-2" style="display:inline-block;">Delete Service?</h6>
 
-      <div class="progress collection">
-        <div id="preloader{{ $slide->id }}" class="indeterminate"  style="display:none; 
+      <div class="progress collection mb-2">
+        <div id="preloader2{{ $service->id }}" class="indeterminate"  style="display:none; 
         border:2px #ebebeb solid"></div>
       </div>
       
@@ -14,36 +14,35 @@
         <div class="col s12" id="account">
           <!-- users edit media object ends -->
           <!-- users edit account form start -->
-          <form method="POST" action="{{ route('update.slide') }}" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="{{ $slide->id }}">
+          <form method="POST" action="{{ route('delete.service', $service->id ) }}" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{ $service->id }}">
             @csrf
 
             <div class="row">
-              <div class="col s12 m12 l6 mb-2">
-                  <input name="image" type="file" data-default-file="{{ url($slide->image) }}" id="input-file-now-custom-2" class="dropify" data-height='250' />  
+              <div class="col s12 m12 l4 mb-2">
+                  <input name="image" type="file" data-default-file="{{ url($service->image) }}" id="input-file-now-custom-2" class="dropify" data-height='150' />  
               @error('image')
               <small class="errorTxt3  red-text">{{ $message }}*</small>
               @enderror   
               </div>
 
 
-              <div class="col s12 m6">
+              <div class="col s12 m8">
                 <div class="row">
 
                   <div class="col s12 input-field">
-                    <input id="heading" name="heading" value="{{ $slide->heading }}" type="text" class="validate" 
+                    <input id="name" name="name" value="{{ $service->name }}" type="text" class="validate" 
                       data-error=".errorTxt3" />
-                    <label for="heading">Heading</label>
-                    @error('heading')
+                    <label for="name">Name</label>
+                    @error('name')
                     <small class="errorTxt3 red-text">{{ $message }}*</small>
                     @enderror
                   </div>
 
                   <div class="col s12 input-field">
-                    <input id="sub_heading"  value="{{ $slide->sub_heading }}" name="sub_heading" type="text" class="validate" 
-                      data-error=".errorTxt2" required />
-                    <label for="sub_heading">Sub Heading</label>
-                    @error('short_title')
+                    <label for="summary">Summary</label>
+                    <textarea id="summary" name="summary" class="materialize-textarea" >{{ $service->summary }}</textarea>
+                    @error('summary')
                     <small class="errorTxt3  red-text">{{ $message }}*</small>
                     @enderror
                   </div>   
@@ -52,10 +51,10 @@
                 <button type="submit" class="btn-large" onclick="ShowPreloader()">
                   Save Entry</button>
                 <a href="{{ route('view.slides') }}" class="btn-large btn-flat modal-close">Cancel</a>
-              </div>   -->  
+              </div>   -->
 
               <div class="col s12 mt-7">   
-                <button  id="updateSlideBtn{{ $slide->id }}" type="submit" class="modal-action waves-effect waves-green btn-large">Update</button>
+                <button  id="deleteServiceBtn{{ $service->id }}" type="submit" class="modal-action waves-effect red waves-red btn-large">Yes, Delete!</button>
                 <a href="javascript:void(0)" class="btn-large btn-flat modal-close">Cancel</a>
               </div>     
 
@@ -72,8 +71,8 @@
 </div>
 <script type="text/javascript"> 
       // Preloader Script
-document.getElementById("updateSlideBtn{{$slide->id}}").addEventListener("click", function() {
-  var preloader = document.getElementById("preloader{{$slide->id}}");
+document.getElementById("deleteServiceBtn{{$service->id}}").addEventListener("click", function() {
+  var preloader = document.getElementById("preloader{{$service->id}}");
   preloader.style.display = "block";
 });
 </script>

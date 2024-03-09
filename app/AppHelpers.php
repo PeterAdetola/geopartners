@@ -80,3 +80,12 @@ if (!function_exists('getAboutSummary')) {
      return $about_sum;
     }
 }
+// Get Services
+if (!function_exists('getServices')) {
+    function getServices()
+    {
+     $services = App\Models\Service::all();
+     
+     return $services;
+    }
+}
