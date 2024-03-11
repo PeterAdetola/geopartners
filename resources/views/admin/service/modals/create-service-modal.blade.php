@@ -67,4 +67,11 @@
       <!-- </div> -->
   </div>
 </div>
+<script>
+  
+    document.getElementById("createServiceBtn").addEventListener("click", function() {
+      var preloader = document.getElementById("create-service-preloader");
+      preloader.style.display = "block";
+    });
+</script>
 <!-- /End Modal -->

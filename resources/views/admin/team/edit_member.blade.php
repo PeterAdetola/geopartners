@@ -2,7 +2,7 @@
 @extends('admin.admin_master')
 @section('admin')
 @php
-$pageTitle = 'Edit Service';
+$pageTitle = 'Edit Member';
 @endphp
 
 
@@ -25,7 +25,7 @@ $pageTitle = 'Edit Service';
                   <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Admin Home</a>
                   </li>
                   <li class="breadcrumb-item active">
-                    <a href="{{ route('view.services') }}">View Services</a>
+                    <a href="{{ route('view.members') }}">View Members</a>
                   </li>
                   <li class="breadcrumb-item active">{{ $pageTitle }}</li>
                 </ol>
@@ -43,73 +43,81 @@ $pageTitle = 'Edit Service';
   <div class="col s12 m12 l8">
 
 
-<div id="edit{{ $service->id }}" class="card mb-10" style="padding:1em;">
-      <h6 class="card-title ml-2" style="display:inline-block;">Edit Service</h6>
+<div id="edit{{ $member->id }}" class="card mb-10" style="padding:1em;">
+      <h6 class="card-title ml-2">Edit Member</h6>
 
       <div class="progress collection mb-2">
-        <div id="preloader{{ $service->id }}" class="indeterminate" style="display:none; 
+        <div id="preloader{{ $member->id }}" class="indeterminate" style="display:none; 
         border:2px #ebebeb solid"></div>
       </div>
       
       <!-- <div class="card-body"> -->
-      <div class="row">
+       <div class="row">
         <div class="col s12" id="account">
           <!-- users edit media object ends -->
           <!-- users edit account form start -->
-          <form method="POST" action="{{ route('update.service') }}" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="{{ $service->id }}">
+          <form method="POST" action="{{ route('update.member') }}" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{ $member->id }}">
             @csrf
 
             <div class="row">
-              <div class="col s12 m12 l4 mb-2">
-                  <input name="image" type="file" data-default-file="{{ url($service->image) }}" id="input-file-now-custom-2" class="dropify" data-height='150' />  
-              @error('image')
-              <small class="errorTxt3  red-text">{{ $message }}*</small>
-              @enderror   
+              <div class="col s12 m12 l5 mt-3">
+                  <input name="image" type="file" data-default-file="{{ url($member->image) }}" id="input-file-now-custom-2" class="dropify" data-height='250' />  
+                  @error('image')
+                  <small class="errorTxt3  red-text">{{ $message }}*</small>
+                  @enderror   
               </div>
 
 
-              <div class="col s12 m8">
+              <div class="col s12 m7 mt-2">
                 <div class="row">
 
-                  <div class="col s12 input-field">
-                    <input id="name" name="name" value="{{ $service->name }}" type="text" class="validate" 
-                      data-error=".errorTxt3" />
-                    <label for="name">Name</label>
+                  <div class="col s12 input-field mt-1">
+                    <input id="name" name="name" type="text" value="{{ $member->name }}" class="validate" data-error=".errorTxt3" />
+                    <label for="name">Full Name</label>
                     @error('name')
                     <small class="errorTxt3 red-text">{{ $message }}*</small>
                     @enderror
                   </div>
 
-                  <div class="col s12 input-field">
-                    <label for="summary">Summary</label>
-                    <textarea id="summary" name="summary" class="materialize-textarea" >{{ $service->summary }}</textarea>
-                    @error('summary')
+                  <div class="col s12 input-field mt-1">
+                    <input id="role" name="role" type="text" value="{{ $member->role }}" class="validate" data-error=".errorTxt2" />
+                    <label for="role">Role/Office</label>
+                    @error('role')
                     <small class="errorTxt3  red-text">{{ $message }}*</small>
                     @enderror
                   </div>   
+
+                  <div class="col s12 input-field mt-1">
+                    <input id="qualificatn" name="qualificatn" type="text" value="{{ $member->qualificatn }}" class="validate" data-error=".errorTxt2" />
+                    <label for="role">Qualification</label>
+                    @error('qualificatn')
+                    <small class="errorTxt3  red-text">{{ $message }}*</small>
+                    @enderror
+                  </div> 
+
+                  <div class="col s12 input-field mt-1">
+                    <input id="linked_in" name="linked_in" type="text" value="{{ $member->linked_in }}" class="validate" data-error=".errorTxt2" />
+                    <label for="linked_in">LinkedIn</label>
+                    @error('linked_in')
+                    <small class="errorTxt3  red-text">{{ $message }}*</small>
+                    @enderror
+                  </div> 
               
               <!-- <div class="col s12 display-flex justify-content-end mt-3">
                 <button type="submit" class="btn-large" onclick="ShowPreloader()">
                   Save Entry</button>
                 <a href="{{ route('view.slides') }}" class="btn-large btn-flat modal-close">Cancel</a>
-              </div>   -->
+              </div>   -->     
 
-              <!-- <div class="col s12 mt-7">   
-                <button  id="updateServiceBtn{{ $service->id }}" type="submit" class="modal-action waves-effect waves-red btn-large">Update</button>
-              </div> -->
-
-                </div>
+                </div>  
               </div>
             </div>
-
-            <div class="card-action">  
-                <button  id="updateServiceBtn{{ $service->id }}" type="submit" class="modal-action waves-effect waves-red btn-large right">Update</button>
-                <!-- <a href="#delete{{ $service->id }}"><i class="modal-trigger material-icons small-ico-bg red-text mt-2 left">delete</i></a> -->
-                <a href="#delete{{ $service->id }}" class="modal-trigger btn-floating red lime-text text-accent-1">
+              <div class="card-action col s12 mt-2">   
+                <button  id="updateMemberBtn{{$member->id}}" type="submit" class="modal-action waves-effect waves-red btn-large right mt-2">Update</button>
+                <a href="#delete{{ $member->id }}" class="modal-trigger btn-floating red lime-text text-accent-1 mt-3">
                 <i class="material-icons white-text mb-2">delete</i>
               </a>
-            </div>   
           </form>
           <!-- users edit account form ends -->
         </div>
@@ -121,7 +129,7 @@ $pageTitle = 'Edit Service';
 
 
 
-    @include('admin.service.modals.delete-service-modal')
+    @include('admin.team.modals.delete-member-modal')
 
 </div>
 <!-- users view ends -->
@@ -136,15 +144,13 @@ $pageTitle = 'Edit Service';
   <script type="text/javascript"> 
       // Preloader Script
 
-      document.getElementById("updateServiceBtn{{$service->id}}").addEventListener("click", function() {
-        var preloader = document.getElementById("preloader{{$service->id}}");
-        preloader.style.display = "block";
-      });  
-      
-      document.getElementById("deleteServiceBtn{{$service->id}}").addEventListener("click", function() {
-        var preloader = document.getElementById("preloader2{{$service->id}}");
+      document.getElementById("updateMemberBtn{{$member->id}}").addEventListener("click", function() {
+        var preloader = document.getElementById("preloader{{ $member->id }}");
         preloader.style.display = "block";
       });
+
+
+  
       
   $(document).ready(()=>{
       $('#image').change(function(){

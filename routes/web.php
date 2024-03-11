@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HeroController;
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Service\ServicesController;
+use App\Http\Controllers\Team\TeamController;
 
 /*
 |--------------------------------------------------------------------------

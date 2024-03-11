@@ -38,7 +38,9 @@ class ServicesController extends Controller
             'image.required' => 'icon in PNG is required',
         ]);
 
-        $order = 0;
+        $service_no = count(Service::all());
+        $order = $service_no + 1;
+        
         $image = $request->file('image');
 
         if($image) {

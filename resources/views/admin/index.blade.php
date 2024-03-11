@@ -157,6 +157,7 @@
 
     @php
     $services = getServices();
+    $members = getMembers();
     @endphp
     <div class="row">      
       <div class="col s12 m6 card-width">
@@ -189,10 +190,10 @@
           <div class="card border-radius-6">
             <div class="card-content center-align">
               <i class="material-icons grey-text mb-5">people</i>
-              <h4 class="m-0"><b>6</b></h4>
-              <p>Team Members</p>
+              <h4 class="m-0"><b>{{ count($members) }}</b></h4>
+              <p>{{ (count($members) > 1)? 'Team Members' : 'Team Member' }}</p>
             <p class="mt-3">
-              <a href="#!" class="red-text"><i class="material-icons vertical-align-middle small-ico-bg">arrow_forward</i></a>
+              <a href="{{ route('view.members') }}" class="red-text"><i class="material-icons vertical-align-middle small-ico-bg">arrow_forward</i></a>
             </p>
             </div>
           </div>

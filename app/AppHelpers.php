@@ -89,3 +89,12 @@ if (!function_exists('getServices')) {
      return $services;
     }
 }
+// Get Team Members
+if (!function_exists('getMembers')) {
+    function getMembers()
+    {
+     $members = App\Models\TeamMember::all();
+     
+     return $members;
+    }
+}
