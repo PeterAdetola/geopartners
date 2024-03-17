@@ -18,7 +18,8 @@ class ProjectController extends Controller
     public function ViewProjects()
     {
 
-        $projects = Project::all()->sortBy('order');
+        // $projects = Project::all()->sortBy('order');
+        $projects = Project::orderBy('order', 'desc')->get();
 
         return view('admin.project.view_projects', compact('projects'));
 
@@ -53,7 +54,7 @@ class ProjectController extends Controller
         ]);
 
         
-        $project_no = count(Service::all());
+        $project_no = count(Project::all());
         $order = $project_no + 1;
 
 
@@ -265,7 +266,7 @@ class ProjectController extends Controller
         try {
             if(file_exists($delImg)){
             unlink($delImg);
-        }
+            }
         } catch (Exception $e) {
         Log::error("Error deleting old image: " . $e->getMessage());            
         }
@@ -289,7 +290,14 @@ class ProjectController extends Controller
 
         return redirect()->back()->with($notification);
 
-        } 
+        } else {
+
+        $notification = array(
+            'message' => 'No image submitted',
+        );
+
+        return redirect()->back()->with($notification);            
+        }
     }  //End Method
 
     /**
@@ -586,8 +594,6 @@ class ProjectController extends Controller
         $notification = array(
             'message' => 'Project deleted',
         );
-
-        // return redirect()->back()->with($notification);
 
         return redirect()->route('view.projects')->with($notification);
 

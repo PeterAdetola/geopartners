@@ -41,8 +41,6 @@ $pageTitle = 'Edit Images for '.$project->name;
         <div class="col s12">
           <div class="container">
             <!-- users view start -->
-    <form method="POST" action="{{ route('sort.project') }}">
-            @csrf
 <div class="row">
   @php($i = 1)
   @if (count($projectImages) > 0)
@@ -84,7 +82,7 @@ $pageTitle = 'Edit Images for '.$project->name;
 
 
 </div>
-</form>
+
     @include('admin.project.modals.add-image-modal')
 <!-- users view ends -->
           </div>
