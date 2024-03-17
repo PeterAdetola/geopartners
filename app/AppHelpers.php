@@ -98,3 +98,12 @@ if (!function_exists('getMembers')) {
      return $members;
     }
 }
+// Get Projects
+if (!function_exists('getProjects')) {
+    function getProjects()
+    {
+     $projects = App\Models\Project::all();
+     
+     return $projects;
+    }
+}

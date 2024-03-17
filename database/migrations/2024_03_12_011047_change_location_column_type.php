@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('about_summaries', function (Blueprint $table) {
-            $table->id();
-            $table->string('image')->nullable();
-            $table->text('summary')->nullable();        
-            $table->timestamps();
+        Schema::table('projects', function (Blueprint $table) {
+            $table->string('location')->after('category')->nullable()->change();
+            $table->string('year')->after('details')->nullable();
         });
     }
 
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('about_summaries');
+        //
     }
 };

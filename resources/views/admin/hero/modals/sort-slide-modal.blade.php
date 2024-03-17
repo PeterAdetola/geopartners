@@ -19,6 +19,7 @@
           <div class="collapsible-header slide-item" style="padding: 5px">
               <img width="50px" height="50px" src="{{ url($slide->thumbnail) }}" class="circle ml-5" />
               <span class="right card-title ml-10 mt-2">{{ $slide->heading }}</span>
+              <i class="material-icons right mt-2" style="margin-left: auto;">drag_handle</i>
           </div>
          </li>
          @endforeach

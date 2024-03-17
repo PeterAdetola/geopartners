@@ -2,15 +2,17 @@
 @extends('admin.admin_master')
 @section('admin')
 @php
-$pageTitle = 'View Services';
+$pageTitle = 'View Projects';
 @endphp
 
 @section('headScript')
+<!-- <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script> -->
 <script src="{{ asset('backend/assets/vendors/sortable/sortable.js') }}"></script>
 @endsection
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/vendors/dropify/css/dropify.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/pages/cards-basic.css') }}">
 @endsection
     <style>
       .embossed{
@@ -50,62 +52,65 @@ $pageTitle = 'View Services';
         <div class="col s12">
           <div class="container">
             <!-- users view start -->
-<div class="row"> 
-  <div class="col s12 m12 l8">
-    <form method="POST" action="{{ route('sort.service') }}">
+<div id="image-card" class="row"> 
+  <div class="col s12 m12 l12">
+    <form method="POST" action="{{ route('sort.project') }}">
             @csrf
-         <ul id="simpleList" class="collapsible">
-  @php($i = 1)
-  @if (count($services) > 0)
-  @foreach($services as $service) 
-            <li class="hoverable">
-          <input type="hidden" name="order[]" value="{{ $service->id }}">
-               <div class="collapsible-header center" tabindex="0">
-                <div class="left"><img height="50" width="72" src="{{ url($service->image) }}" /></div>
-                <h6 class="right font-weight-700 grey-text ml-10 mt-3">
-                      {{ $service->name }}
-                </h6>
-                <div class="right mt-3" style="margin-left: auto;"><i class="material-icons">drag_handle</i></div>
-                </div>
-               <div class="collapsible-body">
-              <span>{{ $service->summary }}</span>
-                <div class="divider mb-2 mt-2"></div>
-                  <div>
-                    <a href="{{ route('edit.service', $service->id ) }}" class="lime-text text-accent-1">
-                      <i class="material-icons small-ico-bg grey-text mb-0">edit</i>
-                    </a>
-                  </div>
-              </div>
-            </li>
-    {{--@include('admin.service.modals.edit-service-modal')--}}
+  <ul id="simpleList">
+
+  @if (count($projects) > 0)
+  @foreach($projects as $project) 
+    <li class="col s12 m6 l4">
+    <input type="hidden" name="order[]" value="{{ $project->id }}">
+      <div class="hoverable card">
+        <div class="card-image">
+          <img src="{{ url($project->image) }}" alt="{{ $project->name }}" />
+        </div>
+        <div class="card-content pt-1 pb-1">
+          <h6 class="card-title truncate">{{ $project->name }}</h6>
+          <p class="truncate">{{ $project->category }}</p>
+        </div>
+        <div class="card-action">
+            <a href="{{ route('edit.project', $project->id ) }}" class="lime-text text-accent-1">
+              <i class="material-icons small-ico-bg grey-text mb-0">edit</i>
+            </a>
+              <i class="right material-icons grey-text mt-1 mb-0">drag_handle</i>
+        </div>
+      </div>
+    </li>
 
     @endforeach
     @else
-      <li>
-         <div class="collapsible-header row pb-1" style="">
-                <div class="left"><img height="50" width="50" src="{{ url('backend/assets/images/favicon/pacmediac_logo.png') }}" /></div>
-          <h6 class="right font-weight-700 grey-text ml-10 mt-3">
-                No Service yet
-          </h6>
+      
+
+    <!-- <li class="hoverable col s12 m6 l3"> -->
+      <div class="col s12 m6 l4">
+      <div class="card">
+
+        <div class="card-image">
+          <img src="{{ url('backend/assets/images/gallery/flat-bg.jpg') }}" alt="No Project Yet" /> 
+          <span class="card-title grey-text">No Entry Yet</span>
         </div>
-         <div class="collapsible-body">
-            <span>To create service, click the plus at the bottom right corner of the page, provide the required details to create a service</span>
-          <div class="divider mb-2 mt-2"></div>
-          <div>
+        <div class="card-content pt-1 pb-1">
+          <h6 class="card-title truncate">Project Name</h6>
+          <p class="truncate">ProjectCategory</p>
+        </div>
+        <div class="card-action">
             <a href="#!" class="lime-text text-accent-1">
-              <i class="material-icons small-ico-bg grey-text mb-0">priority_high</i>
+              <i class="material-icons small-ico-bg grey-text mb-0">info</i>
             </a>
-          </div>
         </div>
-      </li>
+      </div>
+      </div>
+    <!-- </li> -->
     @endif
          </ul>
-      <div class="progress collection border mt-5">
-        <div id="sort-service-preloader" class="indeterminate"  style="display:none; 
+      <div class="progress collection border">
+        <div id="sort-project-preloader" class="indeterminate" style="display:none; 
         border:2px #fafafa solid"></div>
       </div>
 
-@if (count($services) > 1)
+@if (count($projects) > 1)
     <button type="submit" id="saveOrderButton" class="waves-effect chip btn-flat right mb-10">&nbsp;&nbsp;Save Order<i class="material-icons right">check</i>&nbsp;&nbsp;</button>
 @endif
        </form>
@@ -119,12 +124,10 @@ Sortable.create(simpleList, {
 });
 </script>
 
-@if (count($services) < 4)
-  <div style="bottom: 50px; right: 19px;" class=" fixed-action-btn direction-top"><a href="#create-service-modal" class="modal-trigger btn-floating btn-large gradient-45deg-black-grey gradient-shadow"><i class="material-icons">add</i></a>
+  <div style="bottom: 50px; right: 19px;" class=" fixed-action-btn direction-top"><a href="{{ route('create.project') }}" class="btn-floating btn-large gradient-45deg-black-grey gradient-shadow"><i class="material-icons">add</i></a>
   </div>
-@endif
 
-    @include('admin.service.modals.create-service-modal')
+   {{--@include('admin.project.modals.create-project-modal')--}}
 
 </div>
 <!-- users view ends -->
@@ -139,11 +142,17 @@ Sortable.create(simpleList, {
 
   <script>
 
-
     document.getElementById("saveOrderButton").addEventListener("click", function() {
-      var preloader = document.getElementById("sort-service-preloader");
+      var preloader = document.getElementById("sort-project-preloader");
       preloader.style.display = "block";
     });
+    
+    document.getElementById("createProjectBtn").addEventListener("click", function() {
+      var preloader = document.getElementById("create-project-preloader");
+      preloader.style.display = "block";
+    });
+
+
   </script>
 
   <script type="text/javascript">      

@@ -158,6 +158,7 @@
     @php
     $services = getServices();
     $members = getMembers();
+    $projects = getProjects();
     @endphp
     <div class="row">      
       <div class="col s12 m6 card-width">
@@ -177,10 +178,10 @@
         <div class="card border-radius-6">
           <div class="card-content center-align">
             <i class="material-icons grey-text mb-5">business_center</i>
-            <h4 class="m-0"><b>8</b></h4>
-            <p>Portfolio</p>
+            <h4 class="m-0"><b>{{ count($projects) }}</b></h4>
+            <p>{{ (count($projects) > 1)? 'Projects' : 'Project' }}</p>
             <p class="mt-3">
-              <a href="#!" class="red-text"><i class="material-icons vertical-align-middle small-ico-bg">arrow_forward</i></a>
+              <a href="{{ route('view.projects') }}" class="red-text"><i class="material-icons vertical-align-middle small-ico-bg">arrow_forward</i></a>
             </p>
           </div>
         </div>
@@ -339,12 +340,12 @@
       preloader.style.display = "block";
     });
       // Preloader Script
-      function ShowPreloader() {
-        document.getElementById('preloader').style.display = "block";
-        document.getElementById('preloader2').style.display = "block";
-        document.getElementById('preloader3').style.display = "block";
-        // document.getElementById('preloader4').style.display = "block";
-      }   
+      // function ShowPreloader() {
+      //   document.getElementById('preloader').style.display = "block";
+      //   document.getElementById('preloader2').style.display = "block";
+      //   document.getElementById('preloader3').style.display = "block";
+      //   // document.getElementById('preloader4').style.display = "block";
+      // }   
       
   $(document).ready(()=>{
       $('#image').change(function(){

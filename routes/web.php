@@ -7,6 +7,7 @@ use App\Http\Controllers\Home\HeroController;
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Service\ServicesController;
 use App\Http\Controllers\Team\TeamController;
+use App\Http\Controllers\Project\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,23 @@ Route::controller(TeamController::class)->group(function ()
     Route::post('/update/member', 'UpdateMember')->name('update.member');
     Route::get('/edit/member/{id}', 'EditMember')->name('edit.member');
     Route::post('/delete/member/{id}', 'DeleteMember')->name('delete.member');
+});
+
+// --------------| Portfolio Routes |----------------------------------------
+Route::controller(ProjectController::class)->group(function () 
+{
+    Route::get('/view/projects', 'ViewProjects')->name('view.projects');
+    Route::get('/create/project', 'CreateProject')->name('create.project');
+    Route::post('/store/project', 'SaveProject')->name('save.project');
+    Route::post('/store/project_img', 'SaveProjectImg')->name('save.project_img');
+    Route::post('/sort/project', 'SortProject')->name('sort.project');
+    Route::post('/sort/project_imgs', 'SortProjectImgs')->name('sort.project_imgs');
+    Route::post('/update/project', 'UpdateProject')->name('update.project');
+    Route::get('/edit/project/{id}', 'EditProject')->name('edit.project');
+    Route::get('/edit/project_imgs/{id}', 'EditProjectImages')->name('edit.project_imgs');
+    Route::post('/update/project_imgs/{id}', 'UpdateProjectImages')->name('update.project_imgs');
+    Route::post('/delete/project/{id}', 'DeleteProject')->name('delete.project');
+    Route::get('/delete/project_img/{id}', 'DeleteProjectImg')->name('delete.project_img');
 });
 
 

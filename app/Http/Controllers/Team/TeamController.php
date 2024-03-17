@@ -17,7 +17,6 @@ class TeamController extends Controller
         $members = TeamMember::all()->sortBy('order');
 
         return view('admin.team.view_members', compact('members'));
-        // return view('admin.team.view_members');
 
     } //End Method
 
