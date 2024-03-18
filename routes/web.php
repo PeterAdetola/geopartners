@@ -4,6 +4,7 @@ use App\AppHelpers;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HeroController;
+use App\Http\Controllers\Home\TestimonialController;
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Service\ServicesController;
 use App\Http\Controllers\Team\TeamController;
@@ -90,6 +91,19 @@ Route::controller(ProjectController::class)->group(function ()
     Route::post('/update/project_imgs/{id}', 'UpdateProjectImages')->name('update.project_imgs');
     Route::post('/delete/project/{id}', 'DeleteProject')->name('delete.project');
     Route::get('/delete/project_img/{id}', 'DeleteProjectImg')->name('delete.project_img');
+});
+
+// --------------| Testimonial Routes |----------------------------------------
+Route::controller(TestimonialController::class)->group(function ()
+{
+    Route::get('/view/testimonials', 'ViewTestimonials')->name('view.testimonials');
+    Route::post('/store/testimonial', 'SaveTestimonial')->name('save.testimonial');
+    Route::post('/sort/testimonial', 'SortTestimonial')->name('sort.testimonial');
+    Route::post('/update/testimonial', 'UpdateTestimonial')->name('update.testimonial');
+    Route::get('/edit/testimonial/{id}', 'EditTestimonial')->name('edit.testimonial');
+    Route::post('/delete/testimonial/{id}', 'DeleteTestimonial')->name('delete.testimonial');
+    Route::post('/delete/testimonial_img/{id}', 'DeleteTestimonialImg')->name('delete.testimonial_img');
+    Route::post('/add/testimonial_img/{id}', 'AddTestimonialImg')->name('add.testimonial_img');
 });
 
 

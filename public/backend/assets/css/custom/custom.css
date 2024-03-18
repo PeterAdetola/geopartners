@@ -139,7 +139,7 @@ input[type=number]:not(.browser-default):focus.valid ~ label,
 input[type=search]:not(.browser-default):focus.valid ~ label,
 textarea.materialize-textarea:focus.valid ~ label
 {
-    color: #00bfa5;
+    color: #980a04;
 }
 
 input:not([type]):focus.invalid ~ label,
@@ -156,7 +156,7 @@ input[type=number]:not(.browser-default):focus.invalid ~ label,
 input[type=search]:not(.browser-default):focus.invalid ~ label,
 textarea.materialize-textarea:focus.invalid ~ label
 {
-    color: #698C8C;
+    color: #980a04;
 }
 
 /* Validation Sass Placeholders */
@@ -188,8 +188,8 @@ textarea.materialize-textarea.valid,
 textarea.materialize-textarea.valid:focus,
 .select-wrapper.valid > input.select-dropdown
 {
-    border-bottom: 1px solid #00bfa5;
-    box-shadow: 0 1px 0 0 #00bfa5;
+    border-bottom: 1px solid #980a04;
+    box-shadow: 0 1px 0 0 #980a04;
 }
 
 input.invalid:not([type]),
@@ -221,8 +221,8 @@ textarea.materialize-textarea.invalid:focus,
 .select-wrapper.invalid > input.select-dropdown,
 .select-wrapper.invalid > input.select-dropdown:focus
 {
-    border-bottom: 1px solid #698C8C;
-    box-shadow: 0 1px 0 0 #698C8C;
+    border-bottom: 1px solid #980a04;
+    box-shadow: 0 1px 0 0 #980a04;
 }
 input:not([type]).valid ~ .helper-text:after,
 input:not([type]):focus.valid ~ .helper-text:after,
@@ -254,7 +254,7 @@ textarea.materialize-textarea:focus.valid ~ .helper-text:after,
 {
     content: attr(data-success);
 
-    color: #00bfa5;
+    color: #980a04;
 }
 
 input:not([type]).invalid ~ .helper-text:after,
@@ -287,7 +287,7 @@ textarea.materialize-textarea:focus.invalid ~ .helper-text:after,
 {
     content: attr(data-error);
 
-    color: #698C8C;
+    color: #980a04;
 }
 
 .input-field .prefix.active
@@ -383,12 +383,12 @@ input[type=range]::-ms-thumb
     -webkit-transition: width .3s linear;
             transition: width .3s linear;
 
-    background-color: #698C8C;
+    background-color: #980a04;
 }
 
 .progress .indeterminate
 {
-    background-color: #698C8C;
+    background-color: #B30b05;
 }
 .slider .indicators .indicator-item
 {
@@ -438,4 +438,28 @@ input[type=range]::-ms-thumb
     border-radius: 50%;
 /*    background-color: #f3f1f1;*/
     background-color: rgba(0, 0, 0, 0.1);
+}
+.initial-avatar {
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Colors */
+    background-color: #d1d5db;
+    color: #fff;
+
+    /* Rounded border */
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    font-size: 1.5em;
+}
+.big-avatar {   
+
+    /* Rounded border */
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem;
+    font-size: 3em;
 }

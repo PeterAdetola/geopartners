@@ -31,8 +31,6 @@ class ProjectController extends Controller
     public function CreateProject()
     {
 
-        // $projects = Project::all()->sortBy('order');
-
         return view('admin.project.create_project');
 
     } //End Method
@@ -341,7 +339,7 @@ class ProjectController extends Controller
     } // End Method
 
     /**
-     * Delete Service.
+     * Delete Project image.
      */
     public function DeleteProjectImg($id)
     {

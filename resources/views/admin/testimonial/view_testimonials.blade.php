@@ -2,7 +2,7 @@
 @extends('admin.admin_master')
 @section('admin')
 @php
-$pageTitle = 'View Services';
+$pageTitle = 'View Testimonials';
 @endphp
 
 @section('headScript')
@@ -52,32 +52,39 @@ $pageTitle = 'View Services';
             <!-- users view start -->
 <div class="row"> 
   <div class="col s12 m12 l8">
-    <form method="POST" action="{{ route('sort.service') }}">
+    <form method="POST" action="{{ route('sort.testimonial') }}">
             @csrf
          <ul id="simpleList" class="collapsible">
   @php($i = 1)
-  @if (count($services) > 0)
-  @foreach($services as $service) 
+  @if (count($testimonials) > 0)
+  @foreach($testimonials as $testimonial) 
             <li class="hoverable">
-          <input type="hidden" name="order[]" value="{{ $service->id }}">
+          <input type="hidden" name="order[]" value="{{ $testimonial->id }}">
                <div class="collapsible-header center" tabindex="0">
-                <div class="left"><img height="50" width="72" src="{{ url($service->image) }}" /></div>
-                <h6 class="right font-weight-700 grey-text ml-10 mt-3">
-                      {{ $service->name }}
-                </h6>
+          @if($testimonial->image)
+                <div class="left"><img height="60" width="60" src="{{ url($testimonial->image) }}" /></div>
+          @else
+                <div class="initial-avatar">{{ $testimonial->initials }}</div>
+          @endif
+                <div class=" ml-10">
+                  <h6 class="row left font-weight-700 grey-text">
+                        {{ $testimonial->name }}
+                  </h6><br>
+                  <p class="row grey-text">{{ $testimonial->role }}</p>
+                </div>
                 <div class="right mt-3" style="margin-left: auto;"><i class="material-icons">drag_handle</i></div>
                 </div>
                <div class="collapsible-body">
-              <span>{{ $service->summary }}</span>
+              <span>{{ $testimonial->content }}</span>
                 <div class="divider mb-2 mt-2"></div>
                   <div>
-                    <a href="{{ route('edit.service', $service->id ) }}" class="lime-text text-accent-1">
+                    <a href="{{ route('edit.testimonial', $testimonial->id ) }}" class="lime-text text-accent-1">
                       <i class="material-icons small-ico-bg grey-text mb-0">edit</i>
                     </a>
                   </div>
               </div>
             </li>
-    {{--@include('admin.service.modals.edit-service-modal')--}}
+    {{--@include('admin.testimonial.modals.edit-testimonial-modal')--}}
 
     @endforeach
     @else
@@ -85,11 +92,11 @@ $pageTitle = 'View Services';
          <div class="collapsible-header row pb-1" style="">
                 <div class="left"><img height="50" width="50" src="{{ url('backend/assets/images/favicon/pacmediac_logo.png') }}" /></div>
           <h6 class="right font-weight-700 grey-text ml-10 mt-3">
-                No Service yet
+                No testimonial yet
           </h6>
         </div>
          <div class="collapsible-body">
-            <span>To create service, click the plus at the bottom right corner of the page, provide the required details to create a service</span>
+            <span>To create testimonial, click the plus at the bottom right corner of the page, provide the required details to create a testimonial</span>
           <div class="divider mb-2 mt-2"></div>
           <div>
             <a href="#!" class="lime-text text-accent-1">
@@ -101,11 +108,11 @@ $pageTitle = 'View Services';
     @endif
          </ul>
       <div class="progress collection border mt-5">
-        <div id="sort-service-preloader" class="indeterminate"  style="display:none; 
+        <div id="sort-testimonial-preloader" class="indeterminate"  style="display:none; 
         border:2px #fafafa solid"></div>
       </div>
 
-@if (count($services) > 1)
+@if (count($testimonials) > 1)
     <button type="submit" id="saveOrderButton" class="waves-effect chip btn-flat right mb-10">&nbsp;&nbsp;Save Order<i class="material-icons right">check</i>&nbsp;&nbsp;</button>
 @endif
        </form>
@@ -120,10 +127,10 @@ Sortable.create(simpleList, {
 </script>
 
 
-  <div style="bottom: 50px; right: 19px;" class=" fixed-action-btn direction-top"><a href="#create-service-modal" class="modal-trigger btn-floating btn-large gradient-45deg-black-grey gradient-shadow"><i class="material-icons">add</i></a>
+  <div style="bottom: 50px; right: 19px;" class=" fixed-action-btn direction-top"><a href="#create-testimonial-modal" class="modal-trigger btn-floating btn-large gradient-45deg-black-grey gradient-shadow"><i class="material-icons">add</i></a>
   </div>
 
-    @include('admin.service.modals.create-service-modal')
+    @include('admin.testimonial.modals.create-testimonial-modal')
 
 </div>
 <!-- users view ends -->
@@ -140,12 +147,10 @@ Sortable.create(simpleList, {
 
 
     document.getElementById("saveOrderButton").addEventListener("click", function() {
-      var preloader = document.getElementById("sort-service-preloader");
+      var preloader = document.getElementById("sort-testimonial-preloader");
       preloader.style.display = "block";
     });
-  </script>
 
-  <script type="text/javascript">      
       
   $(document).ready(()=>{
       $('#image').change(function(){
