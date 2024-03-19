@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HeroController;
 use App\Http\Controllers\Home\TestimonialController;
+use App\Http\Controllers\Home\ClientController;
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Service\ServicesController;
 use App\Http\Controllers\Team\TeamController;
@@ -104,6 +105,17 @@ Route::controller(TestimonialController::class)->group(function ()
     Route::post('/delete/testimonial/{id}', 'DeleteTestimonial')->name('delete.testimonial');
     Route::post('/delete/testimonial_img/{id}', 'DeleteTestimonialImg')->name('delete.testimonial_img');
     Route::post('/add/testimonial_img/{id}', 'AddTestimonialImg')->name('add.testimonial_img');
+});
+
+// --------------| Client Routes |----------------------------------------
+Route::controller(ClientController::class)->group(function ()
+{
+    Route::get('/view/clients', 'ViewClients')->name('view.clients');
+    Route::post('/store/client', 'SaveClient')->name('save.client');
+    Route::post('/sort/client', 'SortClient')->name('sort.client');
+    Route::post('/update/client', 'UpdateClient')->name('update.client');
+    Route::get('/edit/client/{id}', 'EditClient')->name('edit.client');
+    Route::post('/delete/client/{id}', 'DeleteClient')->name('delete.client');
 });
 
 

@@ -116,6 +116,15 @@ if (!function_exists('getTestimonials')) {
      return $testimonial;
     }
 }
+// Get Clients
+if (!function_exists('getClients')) {
+    function getClients()
+    {
+     $clients = App\Models\Client::all();
+     
+     return $clients;
+    }
+}
 // Extract initials from testifier's name
 // if (!function_exists('getTestInitial')) {
 //     function getTestInitial($id)

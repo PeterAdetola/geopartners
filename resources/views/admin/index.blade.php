@@ -160,6 +160,7 @@
     $members = getMembers();
     $projects = getProjects();
     $testimonials = getTestimonials();
+    $clients = getClients();
     @endphp
     <div class="row">      
       <div class="col s12 m6 card-width">
@@ -218,10 +219,10 @@
           <div class="card border-radius-6">
             <div class="card-content center-align">
               <i class="material-icons grey-text mb-5">group_work</i>
-              <h4 class="m-0"><b>10</b></h4>
-              <p>Partners</p>
+              <h4 class="m-0"><b>{{ count($clients) }}</b></h4>
+              <p>{{ (count($clients) > 1)? 'Clients' : 'Client' }}</p>
             <p class="mt-3">
-              <a href="#!" class="red-text"><i class="material-icons vertical-align-middle small-ico-bg">arrow_forward</i></a>
+              <a href="{{ route('view.clients') }}" class="red-text"><i class="material-icons vertical-align-middle small-ico-bg">arrow_forward</i></a>
             </p>
             </div>
           </div>
