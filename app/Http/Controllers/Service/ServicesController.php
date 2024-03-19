@@ -101,7 +101,7 @@ class ServicesController extends Controller
     } // End Method
 
     /**
-     * Update resource in storage.
+     * Update Service.
      */
     public function UpdateService(Request $request)
     {

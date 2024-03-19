@@ -125,23 +125,12 @@ if (!function_exists('getClients')) {
      return $clients;
     }
 }
-// Extract initials from testifier's name
-// if (!function_exists('getTestInitial')) {
-//     function getTestInitial($id)
-//     {
-//      $testifier = App\Models\Testimonial::where('id', '$id')->get();
-//      $name = $testifier->name;
-//     $initials = [];
-
-//         $nameParts = explode(' ', trim($name));
-//         $firstName = array_shift($nameParts);
-//         $lastName = array_pop($nameParts);
-//         $initials[$name] = (
-//             mb_substr($firstName,0,1) .
-//             mb_substr($lastName,0,1)
-//         );
-
-//      $initials = implode('', $initials);
-//      return $initials;
-//     }
-// }
+// Get About summary
+if (!function_exists('getContact')) {
+    function getContact()
+    {
+     $contact = App\Models\Contact::all();
+     
+     return $contact;
+    }
+}

@@ -242,6 +242,73 @@
   <!-- users view card details start -->
   <div class="card mb-5">
     <div class="card-content">
+    @php
+    $contact = getContact();
+    @endphp
+    @if(count($contact) > 0)
+    @foreach($contact as $contact)
+
+      <div class="row indigo lighten-5 border-radius-4 mb-2 pt-1 pb-1">
+        <div class="col s12 m4" style="padding: 2em">
+          <h6 class="indigo-text ml-2">
+            <span style="
+            position: relative;
+            background-color: #e8eaf6; 
+            z-index: 1;
+            ">&nbsp; 
+
+          Phone 
+
+        &nbsp;</span>
+          </h6>
+          <div class="collection border" style="padding: 1em 2em; margin-top: -1em; z-index: 0;">
+          <h6 class="m-0"><span>{!! $contact->phone !!}</span></h6>
+        </div>
+        </div>
+        <div class="col s12 m4" style="padding: 2em">
+          <h6 class="indigo-text ml-2">
+            <span style="
+            position: relative;
+            background-color: #e8eaf6; 
+            z-index: 1;
+            ">&nbsp;
+
+          Email 
+
+        &nbsp;</span>
+          </h6>
+          <div class="collection border" style="padding: 2em 4em; margin-top: -1em; z-index: 0;">
+          <h6 class=" m-0"><span>{!! $contact->email !!}</span></h6>
+        </div>
+        </div>
+
+
+        <div class="col s12 m4" style="padding: 2em; visibility: {{($contact->address) ? 'visible' : 'hidden'}};">
+          <h6 class="indigo-text ml-2">
+            <span style="
+            position: relative;
+            background-color: #e8eaf6; 
+            z-index: 1;
+            ">&nbsp;
+
+             Address 
+
+           &nbsp;</span>
+          </h6>
+          <div class="collection border" style="padding: 1em 2em; margin-top: -1em; z-index: 0;">
+            <p class="m-0">{!! $contact->address !!}</p>
+          </div>
+        </div>
+
+
+        <div class="right mr-2 {{($contact->address) ? '' : 'mt-5'}}">
+              <a href="#edit-contact-modal" class="modal-trigger red-text"><i class="material-icons vertical-align-middle dark-small-ico-bg">arrow_forward</i></a>
+        </div>
+      </div>
+
+    @include('admin.contact.modals.edit-contact-modal')
+    @endforeach
+    @else
       <div class="row indigo lighten-5 border-radius-4 mb-2 pt-1 pb-1">
         <div class="col s12 m4" style="padding: 2em">
           <h6 class="indigo-text ml-2">
@@ -252,7 +319,7 @@
             ">&nbsp; Phone &nbsp;</span>
           </h6>
           <div class="collection border" style="padding: 2em 4em; margin-top: -1em; z-index: 0;">
-          <h6 class="m-0"><span>125</span></h6>
+          <h6 class="m-0"><span>234-XXX-XXX-XXXX</span></h6>
         </div>
         </div>
         <div class="col s12 m4" style="padding: 2em">
@@ -264,7 +331,7 @@
             ">&nbsp; Email &nbsp;</span>
           </h6>
           <div class="collection border" style="padding: 2em 4em; margin-top: -1em; z-index: 0;">
-          <h6 class=" m-0"><span>125</span></h6>
+          <h6 class=" m-0"><span>company@email.com</span></h6>
         </div>
         </div>
         <div class="col s12 m4" style="padding: 2em">
@@ -276,13 +343,16 @@
             ">&nbsp; Address &nbsp;</span>
           </h6>
           <div class="collection border" style="padding: 1em 2em; margin-top: -1em; z-index: 0;">
-          <p class="m-0">7, Captain Oba street, Off Akinloju Rd. Ikeja Lagos</p>
+          <p class="m-0">0, Name of the Street, At a particular rd. Name of state</p>
         </div>
         </div>
         <div class="right mr-2">
-              <a href="#!" class="red-text"><i class="material-icons vertical-align-middle dark-small-ico-bg">arrow_forward</i></a>
+              <a href="#add-contact-modal" class="modal-trigger red-text"><i class="material-icons vertical-align-middle dark-small-ico-bg">arrow_forward</i></a>
         </div>
       </div>
+    @include('admin.contact.modals.add-contact-modal')
+    @endif
+
       <div class="row">
         <div class="col s12">
           <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>

@@ -10,6 +10,7 @@ use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Service\ServicesController;
 use App\Http\Controllers\Team\TeamController;
 use App\Http\Controllers\Project\ProjectController;
+use App\Http\Controllers\Contact\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +117,17 @@ Route::controller(ClientController::class)->group(function ()
     Route::post('/update/client', 'UpdateClient')->name('update.client');
     Route::get('/edit/client/{id}', 'EditClient')->name('edit.client');
     Route::post('/delete/client/{id}', 'DeleteClient')->name('delete.client');
+});
+
+// --------------| Contact Routes |----------------------------------------
+Route::controller(ContactController::class)->group(function ()
+{
+    // Route::get('/view/clients', 'ViewClients')->name('view.clients');
+    Route::post('/store/contact', 'SaveContact')->name('save.contact');
+    // Route::post('/sort/client', 'SortClient')->name('sort.client');
+    Route::post('/update/contact', 'UpdateContact')->name('update.contact');
+    Route::get('/edit/contact/{id}', 'EditContact')->name('edit.contact');
+    // Route::post('/delete/contact/{id}', 'DeleteContact')->name('delete.contact');
 });
 
 
