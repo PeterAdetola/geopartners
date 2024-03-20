@@ -127,7 +127,7 @@ Route::controller(ContactController::class)->group(function ()
     // Route::post('/sort/client', 'SortClient')->name('sort.client');
     Route::post('/update/contact', 'UpdateContact')->name('update.contact');
     Route::get('/edit/contact/{id}', 'EditContact')->name('edit.contact');
-    // Route::post('/delete/contact/{id}', 'DeleteContact')->name('delete.contact');
+    Route::get('/delete/contact/{id}', 'DeleteContact')->name('delete.contact');
 });
 
 

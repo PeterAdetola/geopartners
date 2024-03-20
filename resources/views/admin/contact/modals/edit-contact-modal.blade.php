@@ -36,6 +36,9 @@
         border:2px #ebebeb solid"></div>
       </div>
       <div class="row">
+          <a id="delete" href="{{ route('delete.contact', $contact->id ) }}" class="btn-floating red lime-text text-accent-1">
+          <i class="material-icons white-text mb-2">delete</i>
+        </a>
         <button  id="editContactBtn" type="submit" class="btn-large right">Save</button>
       </div>
     </form>

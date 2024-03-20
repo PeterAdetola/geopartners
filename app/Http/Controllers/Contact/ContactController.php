@@ -20,11 +20,9 @@ class ContactController extends Controller
         $request->validate([
             'phone' => 'required',
             'email' => 'required',
-            'address' => 'required',
         ],[
             'phone.required' => 'Phone number is required',
             'email.required' => 'Email is required',
-            'address.required' => 'Contact address is required',
         ]);
 
             Contact::insert([
