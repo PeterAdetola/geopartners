@@ -15,4 +15,11 @@ class Project extends Model
     {
         return $this->hasMany(ProjectImgs::class);
     }
+    // public function nextProject() {
+    //   return $this->hasOne(Project::class)->where('id', '>', $this->id)->orderBy('id', 'asc')->limit(1);
+    // }
+
+    // public function previousProject() {
+    //   return $this->hasOne(Project::class)->where('id', '<', $this->id)->orderBy('id', 'desc')->limit(1); 
+    // }
 }

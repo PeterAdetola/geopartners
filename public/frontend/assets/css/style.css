@@ -5007,3 +5007,19 @@ hr.border-2 {
         text-align: center;
     }
 }
+.initial-avatar {
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Colors */
+    background-color: #b19777;
+    color: #fff;
+
+    /* Rounded border */
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    font-size: 1em;
+}

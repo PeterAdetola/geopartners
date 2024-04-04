@@ -12,6 +12,19 @@ class ContactController extends Controller
 {
 
     /**
+     * View Project.
+     */
+    public function ContactPage()
+    {
+
+        // $projects = Project::all()->sortBy('order');
+        $contact = Contact::all();
+
+        return view('frontend.contact.contactpage', compact('contact'));
+
+    } //End Method
+
+    /**
      * Save Contact.
      */
     public function SaveContact(Request $request)

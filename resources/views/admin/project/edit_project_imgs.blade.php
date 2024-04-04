@@ -55,10 +55,6 @@ $pageTitle = 'Edit Images for '.$project->name;
               background-position: center;
         " >
             <div class="card-content white-text" style="height: 10em;">
-              <span class="card-title">{{ $projectImage->heading }}</span>
-              <p>
-               {{ $projectImage->sub_heading }}
-              </p>
             </div>
             <div class="card-action">
               <a href="#edit{{ $projectImage->id }}" class="modal-trigger lime-text text-accent-1">

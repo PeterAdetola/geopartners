@@ -14,19 +14,19 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <textarea name="phone"  id="myeditorinstance" class="materialize-textarea" >{{ $contact->phone }}</textarea>
+        <textarea name="phone"  id="myeditorinstanceII" class="materialize-textarea" >{{ $contact->phone }}</textarea>
       </div>
     </div>
 
     <div class="row">
       <div class="col s12 input-field">      
-          <textarea name="email"  id="myeditorinstance">{{ $contact->email }}</textarea>
+          <textarea name="email"  id="myeditorinstanceII">{{ $contact->email }}</textarea>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s12">
-        <textarea name="address"  id="myeditorinstance" class="materialize-textarea" >{{ $contact->address }}</textarea>
+        <textarea name="address"  id="myeditorinstanceII" class="materialize-textarea" >{{ $contact->address }}</textarea>
       </div>
     </div>
       <!-- </div> -->

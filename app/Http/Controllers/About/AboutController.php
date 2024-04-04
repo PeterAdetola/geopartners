@@ -118,4 +118,14 @@ class AboutController extends Controller
     }
 
     } //End Method
+
+    /**
+     * About page(Non-admin page).
+     */
+   public function AboutusPage()
+    {
+
+        return view('frontend.aboutus');
+
+    } //End Method |-------------------
 }

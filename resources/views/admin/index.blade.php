@@ -19,9 +19,9 @@
         <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
           <!-- Search for small screen-->
           <div class="container">
-            <div class="row" style="margin-top: -1.7em;">
+            <div class="row" style="">
               <div class="col s10 m6 l6">
-                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Welcome Admin!</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Welcome Admin! </span></h5>
                 <p>Right here every aspect of the website can be edited. Explore...</p>
                 <!-- <ol class="breadcrumbs mb-0">
                   <li class="breadcrumb-item"><a href="index.html">Home</a>
@@ -233,6 +233,7 @@
 
 <!-- <p class="right"><span style="background-color: whitesmoke;">&nbsp;&nbsp;&nbsp;&nbsp; <a href="#!" class="btn-large"><i class="material-icons right" style="font-size: 0.8em;">keyboard_arrow_right</i>Edit Services</a> </span></p>
 <div class="divider mt-3" style=""></div> -->
+
 <div class="divider mt-2" style="margin-bottom: -2em;"></div>
 <h4 class="small-heading">
   <span class="embossed grey-text" style="background-color: #fafafa">Contact Section &nbsp;&nbsp;</span>
@@ -244,6 +245,7 @@
     <div class="card-content">
     @php
     $contact = getContact();
+    $thereIsContact = (count($contact) > 0);
     @endphp
     @if(count($contact) > 0)
     @foreach($contact as $contact)
@@ -273,7 +275,7 @@
             z-index: 1;
             ">&nbsp;
 
-          Email 
+          Email
 
         &nbsp;</span>
           </h6>
@@ -287,7 +289,7 @@
           <h6 class="indigo-text ml-2">
             <span style="
             position: relative;
-            background-color: #e8eaf6; 
+            background-color: #e8eaf6;
             z-index: 1;
             ">&nbsp;
 
@@ -302,7 +304,11 @@
 
 
         <div class="right mr-2 {{($contact->address) ? '' : 'mt-5'}}">
-              <a href="#edit-contact-modal" class="modal-trigger red-text"><i class="material-icons vertical-align-middle dark-small-ico-bg">arrow_forward</i></a>
+          @if($thereIsContact)
+              <a href="#edit-contact-modal" class="modal-trigger red-text"><i class="material-icons vertical-align-middle dark-small-ico-bg">edit</i></a>
+          @else              
+              <a href="#edit-contact-modal" class="modal-trigger red-text"><i class="material-icons vertical-align-middle dark-small-ico-bg">add</i></a>
+          @endif
         </div>
       </div>
 
@@ -353,31 +359,37 @@
     @include('admin.contact.modals.add-contact-modal')
     @endif
 
+    @php
+    $smedia = getSmedia();
+    @endphp
       <div class="row">
         <div class="col s12">
           <h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>
           <table class="striped">
+    @if(count($smedia) > 0)
             <tbody>
+    @foreach($smedia as $smedia)
               <tr>
-                <td>Twitter:</td>
-                <td><a href="#">https://www.twitter.com/</a></td>
+                <td>{{ $smedia->name }}:</td>
+                <td><a href="#">{{ $smedia->link }}</a></td>
+                <td><a href="#edit-smedia-modal{{ $smedia->id }}" class="modal-trigger"><i class="material-icons vertical-align-middle dark-small-ico-bg">edit</i></a></td>
+    @include('admin.contact.modals.edit-smedia-modal')
               </tr>
+    @endforeach
+    @else
               <tr>
-                <td>Facebook:</td>
-                <td><a href="#">https://www.facebook.com/</a></td>
-              </tr>
-              <tr>
-                <td>Instagram:</td>
-                <td><a href="#">https://www.instagram.com/</a></td>
+                <td>Social Media type:</td>
+                <td><a href="#">social media url</a></td>
               </tr>
             </tbody>
+    @endif
           </table>
         <div class="right mt-2">
-              <a href="#!" class="red-text"><i class="material-icons vertical-align-middle dark-small-ico-bg">arrow_forward</i></a>
-        </div>
+              <a href="#add-smedia-modal" class="modal-trigger red-text"><i class="material-icons vertical-align-middle dark-small-ico-bg">add</i></a>
         </div>
       </div>
-      <!-- </div> -->
+    </div>
+    @include('admin.contact.modals.add-smedia-modal')
     </div>
   </div>
 
@@ -398,6 +410,13 @@
     height: 250,
     toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code '
   });  
+
+  tinymce.init({
+    selector: 'textarea#myeditorinstanceII', // Replace this CSS selector to match the placeholder element for TinyMCE
+    plugins: 'code lists',
+    height: 200,
+    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code '
+  }); 
 </script>
 
     <script type="text/javascript">
@@ -411,13 +430,7 @@
       var preloader = document.getElementById("about-sumImg-preloader");
       preloader.style.display = "block";
     });
-      // Preloader Script
-      // function ShowPreloader() {
-      //   document.getElementById('preloader').style.display = "block";
-      //   document.getElementById('preloader2').style.display = "block";
-      //   document.getElementById('preloader3').style.display = "block";
-      //   // document.getElementById('preloader4').style.display = "block";
-      // }   
+
       
   $(document).ready(()=>{
       $('#image').change(function(){

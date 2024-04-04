@@ -19,7 +19,7 @@ class ProjectController extends Controller
     {
 
         // $projects = Project::all()->sortBy('order');
-        $projects = Project::orderBy('order', 'desc')->get();
+        $projects = Project::orderBy('created_at', 'desc')->get();
 
         return view('admin.project.view_projects', compact('projects'));
 
@@ -52,7 +52,7 @@ class ProjectController extends Controller
         ]);
 
         
-        $project_no = count(Project::all());
+        $project_no = Project::max('order');
         $order = $project_no + 1;
 
 
@@ -510,7 +510,7 @@ class ProjectController extends Controller
         return redirect()->back()->with($notification);
 
 
-        } elseif(!$image && $images){
+        } elseif(!$image && $images) {
             // No image but there are images
 
             Project::findOrFail($id)->update([
@@ -596,5 +596,33 @@ class ProjectController extends Controller
         return redirect()->route('view.projects')->with($notification);
 
     } //End Method
+
+    /**
+     * Project page(Non-admin page).
+     */
+   public function ProjectPage()
+    {
+
+        return view('frontend.project.projects');
+
+    } //End Method |-------------------
+
+    /**
+     * Project Details page(Non-admin page).
+     */
+   public function ProjectDetailedPage($id)
+    {
+
+        $project = Project::findOrFail($id);
+
+        $projectImages = $project->images->sortBy('order');
+
+
+        $previousProject = Project::where('id', '<', $project->id)->where('details', '!=', '')->orderBy('id', 'desc')->first();
+        $nextProject = Project::where('id', '>', $project->id)->where('details', '!=', '')->orderBy('id', 'asc')->first();
+
+        return view('frontend.project.project_detailed', compact('project', 'projectImages', 'previousProject', 'nextProject'));
+
+    } //End Method |-------------------
 
 }

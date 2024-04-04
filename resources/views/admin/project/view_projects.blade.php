@@ -7,7 +7,7 @@ $pageTitle = 'View Projects';
 
 @section('headScript')
 <!-- <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script> -->
-<script src="{{ asset('backend/assets/vendors/sortable/sortable.js') }}"></script>
+<!-- <script src="{{ asset('backend/assets/vendors/sortable/sortable.js') }}"></script> -->
 @endsection
 
 @section('styles')
@@ -54,7 +54,7 @@ $pageTitle = 'View Projects';
             <!-- users view start -->
 <div id="image-card" class="row"> 
   <div class="col s12 m12 l12">
-    <form method="POST" action="{{ route('sort.project') }}">
+    <!-- <form method="POST" action="{{ route('sort.project') }}"> -->
             @csrf
   <ul id="simpleList">
 
@@ -62,7 +62,7 @@ $pageTitle = 'View Projects';
   @foreach($projects as $project) 
     <li class="col s12 m6 l4">
     <input type="hidden" name="order[]" value="{{ $project->id }}">
-      <div class="hoverable card">
+      <div class="card">
         <div class="card-image">
           <img src="{{ url($project->image) }}" alt="{{ $project->name }}" />
         </div>
@@ -74,7 +74,7 @@ $pageTitle = 'View Projects';
             <a href="{{ route('edit.project', $project->id ) }}" class="lime-text text-accent-1">
               <i class="material-icons small-ico-bg grey-text mb-0">edit</i>
             </a>
-              <i class="right material-icons grey-text mt-1 mb-0">drag_handle</i>
+              <!-- <i class="right material-icons grey-text mt-1 mb-0">drag_handle</i> -->
         </div>
       </div>
     </li>
@@ -111,9 +111,9 @@ $pageTitle = 'View Projects';
       </div>
 
 @if (count($projects) > 1)
-    <button type="submit" id="saveOrderButton" class="waves-effect chip btn-flat right mb-10">&nbsp;&nbsp;Save Order<i class="material-icons right">check</i>&nbsp;&nbsp;</button>
+    <!-- <button type="submit" id="saveOrderButton" class="waves-effect chip btn-flat right mb-10">&nbsp;&nbsp;Save Order<i class="material-icons right">check</i>&nbsp;&nbsp;</button> -->
 @endif
-       </form>
+       <!-- </form> -->
       </div>
 
 

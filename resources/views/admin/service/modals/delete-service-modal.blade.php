@@ -1,11 +1,11 @@
 
 <!-- Start Modal -->
-<div id="delete{{ $service->id }}" class="modal" style="padding:1em;">
+<div id="delete-service-modal" class="modal" style="padding:1em;">
     <div class="modal-content">
       <h6 class="card-title ml-2" style="display:inline-block;">Delete Service?</h6>
 
       <div class="progress collection mb-2">
-        <div id="preloader2{{ $service->id }}" class="indeterminate"  style="display:none; 
+        <div id="preloader{{$service->id}}" class="indeterminate"  style="display:none; 
         border:2px #ebebeb solid"></div>
       </div>
       
@@ -39,13 +39,11 @@
                     @enderror
                   </div>
 
-                  <div class="col s12 input-field">
-                    <label for="summary">Summary</label>
-                    <textarea id="summary" name="summary" class="materialize-textarea" >{{ $service->summary }}</textarea>
-                    @error('summary')
-                    <small class="errorTxt3  red-text">{{ $message }}*</small>
-                    @enderror
-                  </div>   
+                  
+
+                  <p class="col s12 collection red-text" style="padding: 2em;">
+                    Deleting this entry is irreversible and all associated files will be deleted. Proceed with caution!!!
+                  </p>   
               
               <!-- <div class="col s12 display-flex justify-content-end mt-3">
                 <button type="submit" class="btn-large" onclick="ShowPreloader()">

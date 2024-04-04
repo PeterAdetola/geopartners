@@ -55,7 +55,6 @@ $pageTitle = 'View Testimonials';
     <form method="POST" action="{{ route('sort.testimonial') }}">
             @csrf
          <ul id="simpleList" class="collapsible">
-  @php($i = 1)
   @if (count($testimonials) > 0)
   @foreach($testimonials as $testimonial) 
             <li class="hoverable">

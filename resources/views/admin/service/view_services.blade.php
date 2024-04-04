@@ -120,10 +120,10 @@ Sortable.create(simpleList, {
 </script>
 
 
-  <div style="bottom: 50px; right: 19px;" class=" fixed-action-btn direction-top"><a href="#create-service-modal" class="modal-trigger btn-floating btn-large gradient-45deg-black-grey gradient-shadow"><i class="material-icons">add</i></a>
+  <div style="bottom: 50px; right: 19px;" class=" fixed-action-btn direction-top"><a href="{{ route('create.service') }}" class="btn-floating btn-large gradient-45deg-black-grey gradient-shadow"><i class="material-icons">add</i></a>
   </div>
 
-    @include('admin.service.modals.create-service-modal')
+    {{--@include('admin.service.modals.create-service-modal')--}}
 
 </div>
 <!-- users view ends -->

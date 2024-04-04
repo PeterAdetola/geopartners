@@ -125,12 +125,21 @@ if (!function_exists('getClients')) {
      return $clients;
     }
 }
-// Get About summary
+// Get Contact
 if (!function_exists('getContact')) {
     function getContact()
     {
      $contact = App\Models\Contact::all();
      
      return $contact;
+    }
+}
+// Get Social Media
+if (!function_exists('getSmedia')) {
+    function getSmedia()
+    {
+     $smedia = App\Models\SocialMedia::all();
+     
+     return $smedia;
     }
 }

@@ -11,6 +11,8 @@ use App\Http\Controllers\Service\ServicesController;
 use App\Http\Controllers\Team\TeamController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Contact\ContactController;
+use App\Http\Controllers\Contact\SocialMediaController;
+use App\Http\Controllers\Contact\EnquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +26,9 @@ use App\Http\Controllers\Contact\ContactController;
 */
 
 Route::get('/', function () {
-    return view('index');
-});
+    return view('frontend.index');
+})->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('admin.index');
@@ -54,17 +57,28 @@ Route::controller(HeroController::class)->group(function ()
 Route::controller(AboutController::class)->group(function () 
 {
     Route::post('/update/about_summary', 'UpdateAboutSummary')->name('update.about_summary');
+// --------------| About non-admin Routes |----------------------------------------
+    Route::get('/aboutus', 'AboutusPage')->name('aboutus.page');
 });
 
 // --------------| Services Routes |----------------------------------------
 Route::controller(ServicesController::class)->group(function () 
 {
     Route::get('/view/services', 'ViewServices')->name('view.services');
+    Route::get('/create/service', 'CreateService')->name('create.service');
     Route::post('/store/service', 'SaveService')->name('save.service');
+    Route::post('/store/service_img', 'SaveServiceImg')->name('save.service_img');
     Route::post('/sort/service', 'SortService')->name('sort.service');
+    Route::post('/sort/service_imgs', 'SortServiceImgs')->name('sort.service_imgs');
     Route::post('/update/service', 'UpdateService')->name('update.service');
+    Route::post('/update/service_imgs/{id}', 'UpdateServiceImages')->name('update.service_imgs');
     Route::get('/edit/service/{id}', 'EditService')->name('edit.service');
+    Route::get('/edit/service_imgs/{id}', 'EditServiceImages')->name('edit.service_imgs');
     Route::post('/delete/service/{id}', 'DeleteService')->name('delete.service');
+    Route::get('/delete/service_img/{id}', 'DeleteServiceImg')->name('delete.service_img');
+// --------------| Service non-admin Routes |----------------------------------------
+    Route::get('/services', 'ServicePage')->name('services.page');
+    Route::get('/service/detailed/{id}', 'ServiceDetailedPage')->name('service_detailed.page');
 });
 
 // --------------| Team Routes |----------------------------------------
@@ -73,12 +87,13 @@ Route::controller(TeamController::class)->group(function ()
     Route::get('/view/members', 'ViewMembers')->name('view.members');
     Route::post('/store/member', 'SaveMember')->name('save.member');
     Route::post('/sort/member', 'SortMember')->name('sort.member');
+    Route::post('/sort/project_imgs', 'SortProjectImgs')->name('sort.project_imgs');
     Route::post('/update/member', 'UpdateMember')->name('update.member');
     Route::get('/edit/member/{id}', 'EditMember')->name('edit.member');
     Route::post('/delete/member/{id}', 'DeleteMember')->name('delete.member');
 });
 
-// --------------| Portfolio Routes |----------------------------------------
+// --------------| Project Routes |----------------------------------------
 Route::controller(ProjectController::class)->group(function () 
 {
     Route::get('/view/projects', 'ViewProjects')->name('view.projects');
@@ -88,11 +103,15 @@ Route::controller(ProjectController::class)->group(function ()
     Route::post('/sort/project', 'SortProject')->name('sort.project');
     Route::post('/sort/project_imgs', 'SortProjectImgs')->name('sort.project_imgs');
     Route::post('/update/project', 'UpdateProject')->name('update.project');
+    Route::post('/update/project_imgs/{id}', 'UpdateProjectImages')->name('update.project_imgs');
     Route::get('/edit/project/{id}', 'EditProject')->name('edit.project');
     Route::get('/edit/project_imgs/{id}', 'EditProjectImages')->name('edit.project_imgs');
-    Route::post('/update/project_imgs/{id}', 'UpdateProjectImages')->name('update.project_imgs');
     Route::post('/delete/project/{id}', 'DeleteProject')->name('delete.project');
     Route::get('/delete/project_img/{id}', 'DeleteProjectImg')->name('delete.project_img');
+
+// --------------| Project non-admin Routes |----------------------------------------
+    Route::get('/projects', 'ProjectPage')->name('projects.page');
+    Route::get('/project/detailed/{id}', 'ProjectDetailedPage')->name('project_detailed.page');
 });
 
 // --------------| Testimonial Routes |----------------------------------------
@@ -122,12 +141,30 @@ Route::controller(ClientController::class)->group(function ()
 // --------------| Contact Routes |----------------------------------------
 Route::controller(ContactController::class)->group(function ()
 {
-    // Route::get('/view/clients', 'ViewClients')->name('view.clients');
     Route::post('/store/contact', 'SaveContact')->name('save.contact');
-    // Route::post('/sort/client', 'SortClient')->name('sort.client');
     Route::post('/update/contact', 'UpdateContact')->name('update.contact');
     Route::get('/edit/contact/{id}', 'EditContact')->name('edit.contact');
     Route::get('/delete/contact/{id}', 'DeleteContact')->name('delete.contact');
+// --------------| Contact non-admin Routes |----------------------------------------
+    Route::get('/contact', 'ContactPage')->name('contact.page');
+});
+
+// --------------| Contact Routes |----------------------------------------
+Route::controller(EnquiryController::class)->group(function ()
+{
+    Route::post('/send/enquiry', 'SendEnquiry')->name('send.enquiry');
+    // Route::post('/email/feedback', 'EmailFeedback')->name('email.feedback');
+});
+
+
+// --------------| Contact Routes |----------------------------------------
+Route::controller(SocialMediaController::class)->group(function ()
+{
+    Route::post('/store/social_media', 'SaveSocialMedia')->name('save.social_media');
+    Route::post('/sort/social_media', 'SortSocialMedia')->name('sort.social_media');
+    Route::post('/update/social_media', 'UpdateSocialMedia')->name('update.social_media');
+    Route::get('/edit/social_media/{id}', 'EditSocialMedia')->name('edit.social_media');
+    Route::get('/delete/social_media/{id}', 'DeleteSocialMedia')->name('delete.social_media');
 });
 
 
