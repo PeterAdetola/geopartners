@@ -10,16 +10,6 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class HeroController extends Controller
 {
-    /**
-     * Homepage.
-     */
-    
-    // public function Intropage()
-    // {
-
-    //     return view('frontend.index');
-
-    // } //End Method
 
     /**
      * View slides.
@@ -34,17 +24,6 @@ class HeroController extends Controller
         // return view('admin.hero.view_slides');
 
     } //End Method
-
-    /**
-     * Create slide.
-     */
-
-    // public function CreateSlide(Request $request)
-    // {
-
-    //     return view('admin.hero.create_slide');
-
-    // } //End Method
 
     /**
      * Save slide.

@@ -16,12 +16,9 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('admin.profile.edit', [
-            'user' => $request->user(),
-        ]);
-        // return view('profile.edit', [
-        //     'user' => $request->user(),
-        // ]);
+         return view('profile.edit', [
+             'user' => $request->user(),
+         ]);
     }
 
     /**
@@ -37,7 +34,12 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $notification = array(
+            'message' => 'Profile Updated'
+        );
+
+        return redirect()->back()->with('status', 'Your profile has been updated!')
+                          ->with($notification);
     }
 
     /**

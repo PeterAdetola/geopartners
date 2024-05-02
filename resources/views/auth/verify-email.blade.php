@@ -36,25 +36,19 @@
         <div class="container">
           
           <div id="login-page" class="row">
-  <div class="col s12 m6 l4" style="margin: auto;">
-            <div class="flex justify-center" style="width:5em; margin: auto;">
+  <div class="col s12 m6 l5" style="margin: auto;">
+      <div class="flex justify-center" style="width:5em; margin: auto;">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 101.5 101.5" style="enable-background:new 0 0 101.5 101.5;" xml:space="preserve">
-              <style type="text/css">
-                .st0{fill:#E94581;}
-                .st1{fill:#FFFFFF;}
-              </style>
-              <path class="st0" d="M69.8,101.5H31.7C14.2,101.5,0,87.3,0,69.8V31.7C0,14.2,14.2,0,31.7,0h38.2c17.5,0,31.7,14.2,31.7,31.7v38.2
-                C101.5,87.3,87.3,101.5,69.8,101.5z"/>
-              <g>
-                <path class="st1" d="M51.5,77V19.7v-2h-2h-31h-2v2v4.2v2h2h8.2v57.3v2h2h31.9h2v-2V79v-2h-2H51.5z M43.4,25.8v51.3h-8.7V25.8H43.4z
-                  "/>
-                <path class="st1" d="M71.1,17.4c-9.8,0-17.9,8-17.9,17.9c0,9.8,8,17.9,17.9,17.9S89,45.1,89,35.3C89,25.4,81,17.4,71.1,17.4z
-                   M80.9,35.3c0,5.4-4.4,9.8-9.8,9.8c-5.4,0-9.8-4.4-9.8-9.8c0-5.4,4.4-9.8,9.8-9.8C76.5,25.5,80.9,29.9,80.9,35.3z"/>
-              </g>
+              <defs><style>.cls-1{fill:#1c1c1c;}</style></defs><path class="cls-1" d="M0,0V92.7H92.7V0ZM44.13,85.55,25.84,68.33V48.91H44.13Zm0-40.42H25.84V24l18.29-4.59ZM66.44,63.74,48.15,66V48.91H66.44Zm0-18.61H48.15V26.91l18.29,2.87Z"/>
         </svg>
-            </div>
+      </div>
     <!-- Session Status -->
     <div class=" card-panel border-radius-6 login-card bg-opacity-8">
+
+              <div class="progress collection">
+                <div id="preloader" class="indeterminate"  style="display:none; 
+                border:2px #ebebeb solid"></div>
+              </div>
     <x-auth-session-status class="mb-4" :status="session('status')" />
       <div class="row collection" style="padding:1em">
         {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
@@ -65,21 +59,10 @@
             {{ __('A new verification link has been sent to the email address you provided during registration.') }}
         </div>
     @endif
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-      <div class="row pl-5 pr-5">
-        <div class="input-field right">
-          <button class="btn-large waves-effect waves-light"  onclick="ShowPreloader()">{{ __('Resend Verification Email') }}</button>
-        </div>
-      </div>
-    </form>
 
-              <div class="progress collection">
-                <div id="preloader" class="indeterminate"  style="display:none; 
-                border:2px #ebebeb solid"></div>
-              </div>
+      <div class="row"> 
 
-      <div class="row justify-center">        
+      <div class="col s4 mt-4">    
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
@@ -88,6 +71,17 @@
                 {{ __('Log Out') }}
             </button>
         </form>
+    </div> 
+        <div class="col s8">
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+      <div class="row pl-5 pr-5">
+        <div class="input-field right">
+          <button class="btn-large waves-effect waves-light"  onclick="ShowPreloader()">{{ __('Resend Verification Email') }}</button>
+        </div>
+      </div>
+    </form> 
+      </div> 
   </div>
   </div>
 </div>

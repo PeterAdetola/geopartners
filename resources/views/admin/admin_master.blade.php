@@ -37,7 +37,7 @@ $route = Route::current()->getName()
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/pages/dashboard-modern.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/pages/app-invoice.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/pages/page-users.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/pages/page-account-settings.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/pages/page-account-settings.css') }}"> -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/pages/advance-ui-media.css') }}">
     @yield('styles')
     @yield('headScript')

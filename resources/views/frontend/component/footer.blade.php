@@ -135,7 +135,7 @@ $testimonials = App\Models\Testimonial::all();
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="text-left">
-                                    <p>© <span id="currentYear"></span> Geosunny & Partners. All right reserved.</p>
+                                    <p>© <span id="currentYear"></span> <b ><a style="color: grey;" onclick="return false" ondblclick="location=this.href" href="{{ url('login') }}">Geosunny & Partners.</a></b> All right reserved.</p>
                                 </div>
                             </div>
                             <div class="col-md-4 abot">
@@ -166,4 +166,16 @@ $testimonials = App\Models\Testimonial::all();
 
                                         const yearElement = document.getElementById("currentYear");
                                         yearElement.textContent = currentYear;
+
+
+                                        // Admin Gateway
+
+                                        // jQuery(function($) {
+                                        //     $('#login').click(function() {
+                                        //         return false;
+                                        //     }).dblclick(function() {
+                                        //         window.location = this.href;
+                                        //         return false;
+                                        //     });
+                                        // });
                                     </script>

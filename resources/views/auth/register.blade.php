@@ -10,8 +10,8 @@
             <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
             <meta name="author" content="ThemeSelect">
             <title> Register | Admin</title>
-            <link rel="apple-touch-icon" href="{{ asset('backend/assets/images/favicon/apple-touch-icon-152x152.png') }}">
-            <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/favicon/favicon-32x32.png') }}">
+            <link rel="apple-touch-icon" href="{{ asset('backend/assets/images/favicon/recordia-apple-touch-icon-152x152.png') }}">
+            <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/favicon/favicon_r-32x32.png') }}">
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <!-- BEGIN: VENDOR CSS-->
             <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/vendors/vendors.min.css') }}">
@@ -27,7 +27,7 @@
           </head>
           <!-- END: Head-->
 
-          <body class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 1-column   blank-page blank-page" data-open="click" data-menu="vertical-modern-menu" data-col="1-column">
+          <body class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu preload-transitions 1-column login-bg blank-page blank-page" data-open="click" data-menu="vertical-modern-menu" data-col="1-column">
             <div class="row">
               <div class="col s12">
                 <div class="container">
@@ -51,7 +51,7 @@
       <div class="row margin">
         <div class="input-field col s12">
           <i class="material-icons prefix pt-2">person_outline</i>
-          <input id="username" type="text" name="username" :value="old('username')" required  autocomplete="username">
+          <input id="username" type="text" name="username" :value="old('username')" required  autocomplete="username" />
           <label for="username" class="center-align">Username</label>
         </div>
               @error('username')
@@ -61,7 +61,7 @@
       <div class="row margin">
         <div class="input-field col s12">
           <i class="material-icons prefix pt-2">mail_outline</i>
-          <input id="email"  type="email" name="email" :value="old('email')" required autocomplete="email">
+          <input id="email"  type="email" name="email" :value="old('email')" required autocomplete="email" />
           <label for="email">Email</label>
         </div>
               @error('email')
@@ -71,7 +71,7 @@
       <div class="row margin">
         <div class="input-field col s12">
           <i class="material-icons prefix pt-2">lock_outline</i>
-          <input id="password" type="password" autocomplete="new-password" name="password" required>
+          <input id="password" type="password" autocomplete="new-password" name="password" required />
           <label for="password">Password</label>
         </div>
               @error('password')
@@ -81,7 +81,7 @@
       <div class="row margin">
         <div class="input-field col s12">
           <i class="material-icons prefix pt-2">lock_outline</i>
-          <input id="password_confirmation" type="password" name="password_confirmation" required>
+          <input id="password_confirmation" type="password" name="password_confirmation" required />
           <label for="password_confirmation">Password Confirmation</label>
         </div>
               @error('password_confirmation')
